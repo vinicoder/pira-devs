@@ -1,2 +1,3 @@
 # pira-devs
-Show all developers from Piracicaba
+
+Shows some developers from Piracicaba who are on GitHub.
