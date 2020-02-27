@@ -10,6 +10,7 @@ export default class Home extends Template {
     this.loading = true;
     this.listUsersEl;
     this.loaderUsersEl;
+    this.totalUsersEl;
     this.page = 1;
     this.users = [];
     this.onLoad();
@@ -19,6 +20,7 @@ export default class Home extends Template {
     await this.loadTemplate('home');
     this.listUsersEl = document.getElementById('listUsers');
     this.loaderUsersEl = document.getElementById('loaderListUsers');
+    this.totalUsersEl = document.getElementById('totalUsers');
     await this.getUsers();
     this.registerHandlers();
   }
@@ -69,6 +71,7 @@ export default class Home extends Template {
       });
 
       this.total = Math.round(users.data.total_count / this.per_page);
+      this.totalUsersEl.innerHTML = users.data.total_count;
       this.users = users.data.items;
 
       await this.render();
