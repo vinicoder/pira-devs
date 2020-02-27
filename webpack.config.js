@@ -1,5 +1,5 @@
 module.exports = {
-  entry: ['@babel/polyfill', './src/main.js'],
+  entry: ['@babel/polyfill', './src/app.js'],
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
@@ -18,6 +18,19 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.html$/i,
+        exclude: /node_modules/,
+        loader: 'html-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff2?)$/,
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
       }
     ]
   }

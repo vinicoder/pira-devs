@@ -1,4 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,700,700i,900,900i&display=swap');
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
+@import '~@fortawesome/fontawesome-free/css/regular.css';
+@import '~@fortawesome/fontawesome-free/css/brands.css';
+
+$purple: #f433ab;
+$green: #00ff96;
+
+html,
+body {
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -17,6 +29,7 @@ body {
   max-width: 1200px;
   padding: 0 30px;
   margin: 0 auto;
+  position: relative;
 }
 
 h1,
@@ -28,26 +41,73 @@ h6 {
   line-height: 1.2em;
 }
 
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 header {
-  padding: 30px 0;
+  padding-bottom: 30px;
+  width: 100%;
+  .container {
+    background: linear-gradient(rgba(51, 51, 51, 0.2), rgba(51, 51, 51, 0.9)),
+      url('../src/images/bg-developer.svg') bottom right no-repeat;
+    background-size: auto 105%;
+    padding-top: 80px;
+  }
   h1 {
     font-size: 2.8em;
     line-height: 1em;
     font-weight: 300;
     margin: 0;
+    small {
+      font-size: 45%;
+      line-height: 1em;
+      color: $green;
+      font-style: italic;
+    }
+  }
+  .btn-return {
+    text-decoration: none;
+    background-color: #1b1b1b;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: #fff;
+      color: #1b1b1b;
+    }
   }
   @media screen and (min-width: 768px) {
-    padding: 60px 0;
+    .container {
+      padding-top: 120px;
+      padding-bottom: 60px;
+      background: url('../src/images/bg-developer.svg') bottom right no-repeat;
+      background-size: auto 110%;
+    }
     h1 {
       font-size: 3.8em;
     }
   }
   @media screen and (min-width: 1024px) {
-    padding: 80px 0;
+    .container {
+      padding-bottom: 80px;
+      background-size: auto 130%;
+    }
     h1 {
       font-size: 4.8em;
     }
   }
+}
+
+main {
+  width: 100%;
 }
 
 .member-list {
@@ -55,14 +115,16 @@ header {
   padding: 0;
   padding-bottom: 40px;
   list-style: none;
+  width: 100%;
   .member {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border-radius: 12px;
     margin-bottom: 10px;
     padding: 10px;
     display: block;
     text-decoration: none;
-    color: #fff;
+    transition: all 0.2s ease;
     .member-header {
       display: flex;
       align-items: center;
@@ -72,6 +134,8 @@ header {
         height: auto;
         border-radius: 50%;
         margin-right: 20px;
+        filter: grayscale(100%);
+        transition: all 0.2s ease;
       }
       .member-info {
         flex: 1;
@@ -79,6 +143,33 @@ header {
         .username {
           font-size: 1.1em;
           margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          &::before,
+          &::after {
+            color: $purple;
+            font-weight: bold;
+          }
+          &::before {
+            content: '{';
+            margin-right: 5px;
+          }
+          &::after {
+            content: '}';
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(1.02);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+      .member-header {
+        .member-photo {
+          filter: grayscale(0%);
         }
       }
     }
@@ -86,8 +177,177 @@ header {
   @media screen and (min-width: 768px) {
     column-count: 2;
     column-gap: 10px;
+    .member {
+      .member-header {
+        .member-photo {
+          width: 60px;
+        }
+      }
+    }
   }
   @media screen and (min-width: 1024px) {
     column-count: 3;
+  }
+}
+
+.profile-header {
+  overflow: hidden;
+  .container {
+    background: none;
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+  h1 {
+    small {
+      line-height: 2.5em;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  .user-login {
+    min-width: 0;
+    display: block;
+    word-break: break-all;
+    color: #fff;
+    &::before,
+    &::after {
+      color: $purple;
+    }
+    &::before {
+      content: '{';
+      margin-right: 20px;
+    }
+    &::after {
+      content: '}';
+      margin-left: 10px;
+    }
+  }
+  .profile-intro {
+    margin-top: 20px;
+    .profile-photo {
+      line-height: 0;
+      margin: 0 -30px;
+      background: #1b1b1b;
+      padding: 30px;
+      text-align: center;
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+    }
+    .profile-info {
+      margin-top: 20px;
+      color: #ccc;
+      .user-name {
+        margin: 0;
+        color: #fff;
+        font-size: 1.5em;
+      }
+      .user-bio {
+        font-style: italic;
+        margin: 16px 0;
+        font-size: 0.9em;
+      }
+      .user-company {
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .user-contact {
+        font-size: 0.9em;
+        margin-top: 16px;
+        color: inherit;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 30px;
+        i {
+          color: $green;
+        }
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .container {
+      background: linear-gradient(
+          rgba(51, 51, 51, 0.95),
+          rgba(51, 51, 51, 0.95)
+        ),
+        url('../src/images/bg-developer.svg') right 30px no-repeat;
+      background-size: auto 50%;
+      background-position: right top;
+    }
+    .profile-intro {
+      display: flex;
+      align-items: center;
+      margin: 0 -30px;
+      background: #1b1b1b;
+      padding: 30px;
+      margin-top: 60px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      .profile-photo {
+        margin: 0;
+        padding: 0;
+        background: none;
+        img {
+          width: 280px;
+        }
+      }
+      .profile-info {
+        padding: 0 30px;
+        font-size: 1.3em;
+        margin: 0;
+        .user-name {
+          font-size: 1.8em;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .container {
+      background-size: auto 60%;
+      .btn-return {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 30px;
+        margin-top: 40px;
+      }
+    }
+    .profile-intro {
+      border-radius: 12px;
+      margin: 0;
+      margin-top: 60px;
+      .profile-photo {
+        img {
+          width: 320px;
+        }
+      }
+      .profile-info {
+        padding: 0 60px;
+      }
+    }
+  }
+}
+
+footer {
+  margin: 30px 0;
+  width: 100%;
+  .container {
+    padding: 30px;
+    border-top: solid 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    a {
+      color: $green;
+      text-decoration: none;
+      text-transform: lowercase;
+      font-weight: bold;
+    }
   }
 }
