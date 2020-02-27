@@ -2,6 +2,8 @@
 
 :raised_hands: Com a finalidade de estudar um pouco mais a linguagem Javascript, iniciei recentemente este projeto com o intuito de podermos **facilitar a procura por desenvolvedorxs na nossa cidade de Piracicaba**.
 
+**Acesse aqui o endereço temporário: https://vinicoder.github.io/pira-devs/public/**
+
 :beer: Para a construção da lista de contatos, atualmente o projeto utiliza como base a _API do GitHub_. Desta maneira é feita uma pesquisa de usuários com base na localização cadastrada em cada perfil.
 
 :pushpin: Portanto, para participar dessa lista, é necessário somente atualizar o perfil do GitHub com a localização em **Piracicaba**.
