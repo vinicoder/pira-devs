@@ -170,10 +170,11 @@ main {
       .member-photo {
         width: 40px;
         height: auto;
-        border-radius: 50%;
+        border-radius: 12px;
         margin-right: 20px;
         filter: grayscale(100%);
         transition: all 0.2s ease;
+        background: #777;
       }
       .member-info {
         flex: 1;
@@ -272,18 +273,6 @@ main {
     display: block;
     word-break: break-all;
     color: #fff;
-    &::before,
-    &::after {
-      color: $purple;
-    }
-    &::before {
-      content: '{';
-      margin-right: 20px;
-    }
-    &::after {
-      content: '}';
-      margin-left: 10px;
-    }
   }
   .profile-intro {
     margin-top: 20px;
@@ -293,10 +282,11 @@ main {
       background: #1b1b1b;
       padding: 30px;
       text-align: center;
+      filter: grayscale(100%);
       img {
         width: 100%;
         height: auto;
-        border-radius: 50%;
+        border-radius: 12px;
       }
     }
     .profile-info {
@@ -304,7 +294,7 @@ main {
       color: #ccc;
       .user-name {
         margin: 0;
-        color: #fff;
+        color: $green;
         font-size: 1.5em;
       }
       .user-bio {
@@ -335,6 +325,20 @@ main {
     }
   }
   @media screen and (min-width: 768px) {
+    .user-login {
+      &::before,
+      &::after {
+        color: $purple;
+      }
+      &::before {
+        content: '{';
+        margin-right: 10px;
+      }
+      &::after {
+        content: '}';
+        margin-left: 10px;
+      }
+    }
     .container {
       background: linear-gradient(
           rgba(51, 51, 51, 0.95),
@@ -349,7 +353,7 @@ main {
       align-items: center;
       margin: 0 -30px;
       background: #1b1b1b;
-      padding: 30px;
+      padding: 60px;
       margin-top: 60px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       .profile-photo {
@@ -362,7 +366,7 @@ main {
       }
       .profile-info {
         padding: 0 30px;
-        font-size: 1.3em;
+        font-size: 1.1em;
         margin: 0;
         .user-name {
           font-size: 1.8em;
