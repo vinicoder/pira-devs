@@ -4,7 +4,7 @@
 
 **Acesse aqui o endereço temporário: https://vinicoder.github.io/pira-devs/public/**
 
-:beer: Para a construção da lista de contatos, atualmente o projeto utiliza como base a _API do GitHub_. Desta maneira é feita uma pesquisa de usuários com base na localização cadastrada em cada perfil.
+:beer: Para a construção da lista de contatos, atualmente o projeto utiliza como recurso a _API do GitHub_. Desta maneira é feita uma pesquisa de usuários com base na localização cadastrada em cada perfil.
 
 :pushpin: Portanto, para participar dessa lista, é necessário somente atualizar o perfil do GitHub com a localização em **Piracicaba**.
 
