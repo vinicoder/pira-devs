@@ -175,9 +175,11 @@ main {
     }
   }
   @media screen and (min-width: 768px) {
-    column-count: 2;
-    column-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     .member {
+      width: calc(50% - 7px);
       .member-header {
         .member-photo {
           width: 60px;
@@ -186,7 +188,28 @@ main {
     }
   }
   @media screen and (min-width: 1024px) {
-    column-count: 3;
+    .member {
+      width: calc(33.33% - 7px);
+    }
+  }
+}
+
+.member-list + .member-list-loading {
+  display: none;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  &.show {
+    display: flex;
+  }
+  i {
+    margin-right: 10px;
+    font-size: 1.8em;
+    color: $green;
+  }
+  span {
+    font-style: italic;
   }
 }
 

@@ -1,43 +1,86 @@
 import api from '../../config/api';
-import { $, Template } from '../../helpers';
+import { viewport, $, Template } from '../../helpers';
 
 export default class Home extends Template {
   constructor() {
     super();
 
+    this.total = 0;
+    this.per_page = 48;
+    this.loading = true;
+    this.listUsersEl;
+    this.loaderUsersEl;
+    this.page = 1;
     this.users = [];
     this.onLoad();
   }
 
   async onLoad() {
     await this.loadTemplate('home');
-    await this.registerHandlers();
+    this.listUsersEl = document.getElementById('listUsers');
+    this.loaderUsersEl = document.getElementById('loaderListUsers');
+    await this.getUsers();
+    this.registerHandlers();
   }
 
   registerHandlers() {
-    this.getUsers();
+    setTimeout(() => {
+      document.body.onscroll = () => {
+        if (!this.loading && this.page < this.total) {
+          let { bottom } = this.listUsersEl.getBoundingClientRect();
+          bottom -= 100;
+          let { scrollTop } = document.documentElement || document.body;
+          scrollTop += viewport().height;
+          if (scrollTop >= bottom) {
+            this.getUsers(this.page + 1);
+          }
+        }
+      };
+    }, 50);
+
+    this.listenLoader();
   }
 
-  async getUsers() {
+  listenLoader() {
+    setInterval(() => {
+      if (this.loading) {
+        if (!this.loaderUsersEl.classList.contains('show')) {
+          this.loaderUsersEl.classList.add('show');
+        }
+      } else {
+        if (this.loaderUsersEl.classList.contains('show')) {
+          this.loaderUsersEl.classList.remove('show');
+        }
+      }
+    }, 50);
+  }
+
+  async getUsers(page = this.page) {
     try {
+      this.loading = true;
       const users = await api.get('search/users', {
         params: {
           q: 'location:Piracicaba',
           sort: 'followers',
-          order: 'desc'
+          order: 'desc',
+          page,
+          per_page: this.per_page
         }
       });
 
+      this.total = Math.round(users.data.total_count / this.per_page);
       this.users = users.data.items;
 
-      this.render();
+      await this.render();
+      this.loading = false;
+      this.page = page;
     } catch (error) {
       console.warn(error);
+      this.loading = false;
     }
   }
 
-  render() {
-    const listUsersEl = document.getElementById('listUsers');
+  async render() {
     this.users.forEach(user => {
       const memberPhoto = $('img', {
         class: 'member-photo',
@@ -60,7 +103,7 @@ export default class Home extends Template {
       });
       memberEl.appendChild(memberHeaderEl);
 
-      listUsersEl.append(memberEl);
+      this.listUsersEl.append(memberEl);
     });
   }
 }
