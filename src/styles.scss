@@ -291,6 +291,12 @@ main {
       margin-top: 20px;
     }
   }
+
+  &:after {
+    width: 100%;
+    content: '';
+    display: inline-block;
+  }
   .member {
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
@@ -354,6 +360,9 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    &:after {
+      width: calc(50% - 7px);
+    }
     .member {
       width: calc(50% - 7px);
       .member-header {
@@ -364,6 +373,9 @@ main {
     }
   }
   @media screen and (min-width: 1024px) {
+    &:after {
+      width: calc(33.33% - 7px);
+    }
     .member {
       width: calc(33.33% - 7px);
     }
