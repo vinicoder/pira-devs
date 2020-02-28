@@ -8,7 +8,7 @@
 
 :pushpin: Portanto, para participar dessa lista, é necessário somente atualizar o perfil do GitHub com a localização em **Piracicaba**.
 
-:fire: _A lista funciona de forma ordenada pela qualidade de seguidores no GitHub._
+:fire: _A lista funciona de forma ordenada pela data de cadastro, quantidade de seguidores e repositórios no GitHub._
 
 :metal: O repositório é **público**, e com a ajuda de toda comunidade, a ideia é de possamos melhorar, aumentar e otimizar essa iniciativa.
 
