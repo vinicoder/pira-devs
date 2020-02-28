@@ -164,6 +164,7 @@ main {
       button,
       .button {
         background-color: #333;
+        transition: all 0.2s ease;
         color: $purple;
         display: flex;
         align-items: center;
@@ -173,6 +174,12 @@ main {
         margin-right: 6px;
         position: absolute;
         right: 0;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+          background-color: $purple;
+          color: #fff;
+        }
       }
       &.select {
         button,
