@@ -140,6 +140,7 @@ main {
         transition: all 0.2s ease;
         position: absolute;
         top: 100%;
+        left: 0;
       }
       &:hover {
         &::after {
