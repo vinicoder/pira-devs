@@ -1,4 +1,7 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
+  plugins: [new Dotenv()],
   entry: ['@babel/polyfill', './src/app.js'],
   output: {
     path: __dirname + '/docs',
@@ -33,5 +36,6 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  node: { fs: 'empty' }
 };
