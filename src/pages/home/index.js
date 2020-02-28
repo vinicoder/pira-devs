@@ -11,8 +11,12 @@ export default class Home extends Template {
     this.listUsersEl;
     this.loaderUsersEl;
     this.totalUsersEl;
+    this.searchFormEl;
+    this.sortEl;
     this.page = 1;
     this.users = [];
+    this.searchQuery = '';
+    this.sortOrder = 'joined';
     this.onLoad();
   }
 
@@ -21,6 +25,8 @@ export default class Home extends Template {
     this.listUsersEl = document.getElementById('listUsers');
     this.loaderUsersEl = document.getElementById('loaderListUsers');
     this.totalUsersEl = document.getElementById('totalUsers');
+    this.searchFormEl = document.getElementById('search');
+    this.sortEl = document.getElementById('sort');
     await this.getUsers();
     this.registerHandlers();
   }
@@ -37,6 +43,19 @@ export default class Home extends Template {
             this.getUsers(this.page + 1);
           }
         }
+      };
+
+      this.searchFormEl.onsubmit = () => {
+        let { value } = document.getElementById('search-query');
+        value = value.replace(/\s\s+/g, ' ');
+        this.searchQuery = value;
+        this.getUsers(1, true);
+        return false;
+      };
+
+      this.sortEl.onchange = e => {
+        this.sortOrder = e.target.value;
+        this.getUsers(1, true);
       };
     }, 50);
 
@@ -57,24 +76,29 @@ export default class Home extends Template {
     }, 50);
   }
 
-  async getUsers(page = this.page) {
+  async getUsers(page = this.page, clean = false) {
     try {
+      if (clean) {
+        this.listUsersEl.innerHTML = '';
+      }
       this.loading = true;
-      const users = await api.get('search/users', {
-        params: {
-          q: 'location:Piracicaba',
-          sort: 'followers',
-          order: 'desc',
-          page,
-          per_page: this.per_page
+      const users = await api.get(
+        `search/users?q=location:Piracicaba+${this.searchQuery}`,
+        {
+          params: {
+            sort: this.sortOrder,
+            order: 'desc',
+            page,
+            per_page: this.per_page
+          }
         }
-      });
+      );
 
       this.total = Math.round(users.data.total_count / this.per_page);
       this.totalUsersEl.innerHTML = users.data.total_count;
       this.users = users.data.items;
 
-      await this.render();
+      await this.render({ clean });
       this.loading = false;
       this.page = page;
     } catch (error) {
@@ -83,7 +107,12 @@ export default class Home extends Template {
     }
   }
 
-  async render() {
+  async render({ clean }) {
+    if (this.users.length === 0) {
+      this.listUsersEl.innerHTML =
+        '<div class="not-found"><div><i class="far fa-grin-beam-sweat"></i> Ops! Nenhum resultado encontrado.</div><a href="./">Começar novamente</a></div>';
+    }
+
     this.users.forEach(user => {
       const memberPhoto = $('img', {
         class: 'member-photo',

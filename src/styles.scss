@@ -113,6 +113,98 @@ header {
 
 main {
   width: 100%;
+  .navbar {
+    margin-bottom: 20px;
+    .form-control,
+    select,
+    form,
+    input,
+    button,
+    .button {
+      appearance: none;
+      background: none;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      border-radius: 25px;
+    }
+    .form-control {
+      width: 100%;
+      margin-bottom: 10px;
+      color: #fff;
+      border: 0;
+      user-select: none;
+    }
+    select,
+    input {
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.4);
+      color: rgba(255, 255, 255, 0.7);
+      outline: none;
+      border: solid 2px transparent;
+      transition: all 0.2s ease;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      &:focus {
+        border-color: $purple;
+        color: #fff;
+      }
+    }
+    .form-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      button,
+      .button {
+        background-color: #333;
+        color: $purple;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        min-width: 40px;
+        margin-right: 6px;
+        position: absolute;
+        right: 0;
+      }
+      &.select {
+        button,
+        .button {
+          pointer-events: none;
+        }
+        select {
+          padding-right: 0;
+        }
+      }
+      &.input {
+        input {
+          padding-right: 50px;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      .form-control {
+        width: calc(50% - 5px);
+      }
+    }
+    @media screen and (min-width: 1024px) {
+      justify-content: flex-start;
+      .form-control {
+        width: calc(33.33% - 5px);
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .header-home {
@@ -162,6 +254,36 @@ main {
   padding-bottom: 40px;
   list-style: none;
   width: 100%;
+  .not-found {
+    width: 100%;
+    padding: 50px 30px;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    div {
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        color: $green;
+        font-size: 3em;
+        margin-right: 20px;
+      }
+    }
+    a {
+      color: $green;
+      text-decoration: none;
+      border: solid 1px $green;
+      padding: 4px 20px;
+      font-size: 14px;
+      border-radius: 26px;
+      margin-top: 20px;
+    }
+  }
   .member {
     background: rgba(0, 0, 0, 0.2);
     color: #fff;

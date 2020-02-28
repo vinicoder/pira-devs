@@ -25,6 +25,26 @@
 
 <main>
   <div class="container">
+    <div class="navbar">
+      <div class="form-control select">
+        <select id="sort">
+          <option value="joined" selected>Ordem por data de cadastro</option>
+          <option value="followers">Ordem por nº de Seguidores</option>
+          <option value="repositories">Ordem por nº de Repositórios</option>
+        </select>
+        <label for="sort" class="button"
+          ><i class="fas fa-arrow-down"></i
+        ></label>
+      </div>
+      <form class="form-control input" id="search">
+        <input
+          id="search-query"
+          type="search"
+          placeholder="Pesquisar por users, linguagens, etc."
+        />
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
     <div class="member-list" id="listUsers"></div>
     <div class="member-list-loading show" id="loaderListUsers">
       <i class="fas fa-circle-notch fa-spin"></i> <span>Loading...</span>
